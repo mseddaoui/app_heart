@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "app-chatbot"
+version = "0.1.0"
+description = ""
+authors = ["Melissa Seddaoui <melyssaseddaoui@gmail.com>"]
+readme = "README.md"
+packages = [{include = "app_chatbot"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.88.0"}
+numpy = "^1.24.0"
+sklearn = "^0.0.post1"
+scikit-learn = "^1.2.0"
+uvicorn = "^0.20.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+flake8-pytest-style = "^1.6.0"
+wemake-python-styleguide = "^0.17.0"
+safety = "^2.3.5"
+pre-commit = "^2.20.0"
+nitpick = "^0.32.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
