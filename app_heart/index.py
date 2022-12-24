@@ -10,10 +10,11 @@ from pydantic import BaseModel,ValidationError
 import pickle
 import numpy as np
 import uvicorn
+import os
 
 api_router = APIRouter()
 
-file = "heart_model.pkl"
+file = os.getcwd() + "/app_heart/heart_model.pkl"
 model = pickle.load(open(file, "rb"))
 
 class input(BaseModel):

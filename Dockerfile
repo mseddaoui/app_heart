@@ -8,4 +8,4 @@ COPY . /heart
 
 WORKDIR /heart
 
-CMD [ "uvicorn", "app_heart.index:api_router", "--host", "0.0.0.0", "--port", "80" ]
+CMD [ "uvicorn", "app_heart.index:api_router", "--host", "0.0.0.0", "--port", "8000" ]
