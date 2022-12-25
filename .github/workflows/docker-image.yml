@@ -19,11 +19,11 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-        
+
     - name: Set up Docker Buildx
       id: buildx
       uses: docker/setup-buildx-action@v1
-        
+
     - name: Build and push
       id: docker_build
       uses: docker/build-push-action@v2
@@ -32,7 +32,20 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api_heart:latest
-    
-    
-    
 
+    - name: stop script if command error
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        passphrase: ${{secrets.PASSPHRASE }}
+        script_stop: true
+        script: |
+          echo "Updating containner on remote server"
+          docker login
+          docker pull melissa10/api_heart
+          docker rm -f $(docker ps -aq)
+          yes | docker container prune
+          docker run -dp 8000:8000 melissa10/api_heart:latest
