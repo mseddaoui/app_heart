@@ -44,7 +44,7 @@ jobs:
         script_stop: true
         script: |
           echo "Updating containner on remote server"
-          docker login
+          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD}}
           docker pull melissa10/api_heart
           docker rm -f $(docker ps -aq)
           yes | docker container prune
