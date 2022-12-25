@@ -48,4 +48,4 @@ jobs:
           docker pull melissa10/api_heart
           docker rm -f $(docker ps -aq)
           yes | docker container prune
-          docker run -dp 8000:8000 melissa10/api_heart:latest
+          docker run -t -dp 8000:8000 melissa10/api_heart:latest
